@@ -3,3 +3,9 @@ app_SensorData:
     prefix: /v1
     resource: "AppBundle\Controller\SensorDataController"
     name_prefix:  api_1_ # naming collision
+
+app_SensorValue:
+    type: rest
+    prefix: /v1
+    resource: "AppBundle\Controller\SensorValueController"
+    name_prefix:  api_2_ # naming collision

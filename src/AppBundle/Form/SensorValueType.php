@@ -16,9 +16,11 @@ class SensorValueType extends AbstractType
     {
         $builder
             ->add('value')
+            ->add('sensorData')
+            ->add('timestamp')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

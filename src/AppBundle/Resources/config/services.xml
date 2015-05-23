@@ -7,12 +7,19 @@
 	<parameters>
 	    <parameter key="app.sensordata.handler.class">AppBundle\Handler\SensorDataHandler</parameter>
 	    <parameter key="app.sensordata.class">AppBundle\Entity\SensorData</parameter>
+	    <parameter key="app.sensorvalue.handler.class">AppBundle\Handler\SensorValueHandler</parameter>
+	    <parameter key="app.sensorvalue.class">AppBundle\Entity\SensorValue</parameter>
 	</parameters>
 
 	<services>
 	    <service id="app.sensordata.handler" class="%app.sensordata.handler.class%">
 	        <argument type="service" id="doctrine.orm.entity_manager" />
 	        <argument>%app.sensordata.class%</argument>
+	        <argument type="service" id="form.factory"></argument>
+	    </service>
+	    <service id="app.sensorvalue.handler" class="%app.sensorvalue.handler.class%">
+	        <argument type="service" id="doctrine.orm.entity_manager" />
+	        <argument>%app.sensorvalue.class%</argument>
 	        <argument type="service" id="form.factory"></argument>
 	    </service>
 	</services>

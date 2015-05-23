@@ -4,11 +4,11 @@ namespace AppBundle\Handler;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
-use AppBundle\Entity\SensorData;
-use AppBundle\Form\SensorDataType;
+use AppBundle\Entity\SensorValue;
+use AppBundle\Form\SensorValueType;
 use AppBundle\Exception\InvalidFormException;
 
-class SensorDataHandler extends SensorData
+class SensorValueHandler extends SensorValue
 {
     private $om;
     private $entityClass;
@@ -36,18 +36,6 @@ class SensorDataHandler extends SensorData
     }
 
     /**
-     * Get a Sensor by localid.
-     *
-     * @param mixed $id
-     *
-     * @return Sensor
-     */
-    public function getByLocalid($id)
-    {
-        return $this->repository->findOneByLocalid($id);
-    }
-
-    /**
      * Get a list of Sensors.
      *
      * @param int $limit  the limit of the result
@@ -61,72 +49,72 @@ class SensorDataHandler extends SensorData
     }
 
     /**
-     * Create a new SensorData.
+     * Create a new SensorValue.
      *
      * @param array $parameters
      *
-     * @return SensorData
+     * @return SensorValue
      */
     public function post(array $parameters)
     {
-        $sensorData = $this->createSensorData();
-
-        return $this->processForm($sensorData, $parameters, 'POST');
+        $sensorValue = $this->createSensorValue();
+        return $this->processForm($sensorValue, $parameters, 'POST');
     }
 
     /**
-     * Edit a SensorData.
+     * Edit a SensorValue.
      *
-     * @param SensorData $sensorData
+     * @param SensorValue $sensorValue
      * @param array         $parameters
      *
-     * @return SensorData
+     * @return SensorValue
      */
-    public function put(SensorData $sensorData, array $parameters)
+    public function put(SensorValue $sensorValue, array $parameters)
     {
-        return $this->processForm($sensorData, $parameters, 'PUT');
+        return $this->processForm($sensorValue, $parameters, 'PUT');
     }
 
     /**
-     * Partially update a SensorData.
+     * Partially update a SensorValue.
      *
-     * @param SensorData $sensorData
+     * @param SensorValue $sensorValue
      * @param array         $parameters
      *
-     * @return SensorData
+     * @return SensorValue
      */
-    public function patch(PageInterface $sensorData, array $parameters)
+    public function patch(PageInterface $sensorValue, array $parameters)
     {
-        return $this->processForm($sensorData, $parameters, 'PATCH');
+        return $this->processForm($sensorValue, $parameters, 'PATCH');
     }
 
     /**
      * Processes the form.
      *
-     * @param SensorData $sensorData
+     * @param SensorValue $sensorValue
      * @param array         $parameters
      * @param String        $method
      *
-     * @return SensorData
+     * @return SensorValue
      *
      * @throws \AppBundle\Exception\InvalidFormException
      */
-    private function processForm(SensorData $sensorData, array $parameters, $method = "PUT")
+    private function processForm(SensorValue $sensorValue, array $parameters, $method = "PUT")
     {
-        $form = $this->formFactory->create(new SensorDataType(), $sensorData, array('method' => $method));
+        $form = $this->formFactory->create(new SensorValueType(), $sensorValue, array('method' => $method));
         $form->submit($parameters, 'PATCH' !== $method);
+        echo $form->getErrorsAsString();
         if ($form->isValid()) {
-            $sensorData = $form->getData();
-            $this->om->persist($sensorData);
-            $this->om->flush($sensorData);
+            $sensorValue = $form->getData();
+            $this->om->persist($sensorValue);
+            $this->om->flush($sensorValue);
 
-            return $sensorData;
+            return $sensorValue;
         }
 
         throw new InvalidFormException('Invalid submitted data', $form);
     }
 
-    private function createSensorData()
+    private function createSensorValue()
     {
         return new $this->entityClass();
     }

@@ -31,7 +31,7 @@ class SensorData
     /**
      * @var string
      *
-     * @ORM\Column(name="localid", type="string", length=32)
+     * @ORM\Column(name="localid", type="string", length=32, unique=true)
      */
     private $localid;
 
@@ -42,6 +42,11 @@ class SensorData
      */
     private $name;
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="SensorValue", mappedBy="id")
+     */
+    private $sensorValues;
 
     /**
      * Get id
@@ -120,5 +125,43 @@ class SensorData
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Sets the value of id.
+     *
+     * @param integer $id the id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of sensorValues.
+     *
+     * @return mixed
+     */
+    public function getSensorValues()
+    {
+        return $this->sensorValues;
+    }
+
+    /**
+     * Sets the value of sensorValues.
+     *
+     * @param mixed $sensorValues the sensor values
+     *
+     * @return self
+     */
+    public function setSensorValues($sensorValues)
+    {
+        $this->sensorValues = $sensorValues;
+
+        return $this;
     }
 }

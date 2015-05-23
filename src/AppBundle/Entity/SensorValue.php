@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,7 +30,15 @@ class SensorValue
     private $value;
 
     /**
-     * @ORM\OneToMany(targetEntity="SensorData", mappedBy="id")
+     * @var string
+     *
+     * @ORM\Column(name="timestamp", type="string")
+     */
+    private $timestamp;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SensorData")
+     * @ORM\JoinColumn(name="sensordata_id",referencedColumnName="id")
      **/
     private $sensorData;
 
@@ -65,5 +74,67 @@ class SensorValue
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * Sets the value of id.
+     *
+     * @param integer $id the id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of sensorData.
+     *
+     * @return mixed
+     */
+    public function getSensorData()
+    {
+        return $this->sensorData;
+    }
+
+    /**
+     * Sets the value of sensorData.
+     *
+     * @param mixed $sensorData the sensor data
+     *
+     * @return self
+     */
+    public function setSensorData($sensorData)
+    {
+        $this->sensorData = $sensorData;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of timestamp.
+     *
+     * @return mixed
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * Sets the value of timestamp.
+     *
+     * @param mixed $timestamp the timestamp
+     *
+     * @return self
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+
+        return $this;
     }
 }
