@@ -10,13 +10,12 @@ security:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    user:  { password: userpass, roles: [ 'ROLE_USER', 'ROLE_API' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN', 'ROLE_API' ] }
 
     # the main part of the security, where you can set up firewalls
     # for specific sections of your app
@@ -44,6 +43,11 @@ security:
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
+        secured_area:
+            pattern:    ^/api
+            anonymous: ~
+            http_basic:
+                realm: "You should have a user name and password"
 
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods

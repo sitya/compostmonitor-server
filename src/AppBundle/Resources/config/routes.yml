@@ -1,0 +1,5 @@
+app_SensorData:
+    type: rest
+    prefix: /v1
+    resource: "AppBundle\Controller\SensorDataController"
+    name_prefix:  api_1_ # naming collision
