@@ -17,7 +17,7 @@ class SensorValueType extends AbstractType
         $builder
             ->add('value')
             ->add('sensorData')
-            ->add('timestamp')
+            ->add('timestamp', 'datetime', array( 'widget' => 'single_text', 'date_format' => 'yyyy-MM-dd HH:mm:ss' ))
         ;
     }
 

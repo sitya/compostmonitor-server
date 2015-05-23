@@ -102,7 +102,6 @@ class SensorValueHandler extends SensorValue
     {
         $form = $this->formFactory->create(new SensorValueType(), $sensorValue, array('method' => $method));
         $form->submit($parameters, 'PATCH' !== $method);
-        echo $form->getErrorsAsString();
         if ($form->isValid()) {
             $sensorValue = $form->getData();
             $this->om->persist($sensorValue);

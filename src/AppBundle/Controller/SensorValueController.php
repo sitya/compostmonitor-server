@@ -36,9 +36,8 @@ class SensorValueController extends FOSRestController
         	$parameters = $request->request->all();
         	$sensor = $this->container->get('app.sensordata.handler')->getByLocalid($parameters['localid']);
         	$parameters['sensorData'] = $sensor->getId();
-        	//$parameters['timestamp'] = new \DateTime( date('Y-m-d H:i', $parameters['timestamp']) );
         	$parameters['timestamp'] = date('Y-m-d H:i', $parameters['timestamp']);
-        	unset($parameters['localid']);
+            unset($parameters['localid']);
             $newSensor = $this->container->get('app.sensorvalue.handler')->post(
                 $parameters
             );

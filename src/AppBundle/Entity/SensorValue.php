@@ -16,7 +16,7 @@ class SensorValue
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -25,14 +25,14 @@ class SensorValue
     /**
      * @var float
      *
-     * @ORM\Column(name="value", type="float")
+     * @ORM\Column(type="float")
      */
     private $value;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="timestamp", type="string")
+     * @ORM\Column(type="datetime")
      */
     private $timestamp;
 
