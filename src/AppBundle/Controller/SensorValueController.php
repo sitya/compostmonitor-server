@@ -36,16 +36,28 @@ class SensorValueController extends FOSRestController
         	$parameters = $request->request->all();
         	$sensor = $this->container->get('app.sensordata.handler')->getByLocalid($parameters['localid']);
         	$parameters['sensorData'] = $sensor->getId();
-        	$parameters['timestamp'] = date('Y-m-d H:i', $parameters['timestamp']);
-            unset($parameters['localid']);
-            $newSensor = $this->container->get('app.sensorvalue.handler')->post(
-                $parameters
-            );
-            $routeOptions = array(
-                'id' => $newSensor->getId(),
-                '_format' => $request->get('_format')
-            );
-            return $this->routeRedirectView('api_1_index', $routeOptions, Codes::HTTP_CREATED);
+
+            $latest = $this->container->get('app.sensorvalue.handler')->latest( $sensor->getId() );
+            if ( $parameters['timestamp'] - $latest->getTimestamp()->format('U') > 3500){
+                $parameters['timestamp'] = date('Y-m-d H:i', $parameters['timestamp']);
+                unset($parameters['localid']);
+
+                $newSensor = $this->container->get('app.sensorvalue.handler')->post(
+                    $parameters
+                );
+                $routeOptions = array(
+                    'id' => $newSensor->getId(),
+                    '_format' => $request->get('_format')
+                );
+                return $this->routeRedirectView('api_1_index', $routeOptions, Codes::HTTP_CREATED);
+            } else {
+                $routeOptions = array(
+                    'id' => 1,
+                    '_format' => $request->get('_format')
+                );
+                return $this->routeRedirectView('api_1_index', $routeOptions, Codes::HTTP_CREATED);
+            }
+
         } catch (InvalidFormException $exception) {
             return $exception->getForm();
         }

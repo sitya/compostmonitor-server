@@ -49,6 +49,19 @@ class SensorValueHandler extends SensorValue
     }
 
     /**
+     * Get a list of Sensors.
+     *
+     * @param int $limit  the limit of the result
+     * @param int $offset starting from the offset
+     *
+     * @return array
+     */
+    public function latest($id)
+    {
+        return $this->repository->findOneBy(array('sensorData' => $id), array('timestamp' => 'DESC'));
+    }
+
+    /**
      * Create a new SensorValue.
      *
      * @param array $parameters
