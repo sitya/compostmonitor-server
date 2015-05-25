@@ -39,6 +39,13 @@ class SensorValueController extends FOSRestController
 
             $latest = $this->container->get('app.sensorvalue.handler')->latest( $sensor->getId() );
             if ( $parameters['timestamp'] - $latest->getTimestamp()->format('U') > 3500){
+                $minute = date('i', $parameters['timestamp']);
+                if ( $minute > 0 && $minute < 30){
+                    $parameters['timestamp'] = $parameters['timestamp'] - $minute*60;
+                } elseif ( $minute >= 30) {
+                    $parameters['timestamp'] = $parameters['timestamp'] + 60*(60-$minute);
+                }
+
                 $parameters['timestamp'] = date('Y-m-d H:i', $parameters['timestamp']);
                 unset($parameters['localid']);
 
