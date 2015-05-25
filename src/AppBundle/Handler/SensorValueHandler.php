@@ -43,9 +43,9 @@ class SensorValueHandler extends SensorValue
      *
      * @return array
      */
-    public function all($limit = 5, $offset = 0)
+    public function all()
     {
-        return $this->repository->findBy(array(), null, $limit, $offset);
+        return $this->repository->findBy(array(), null);
     }
 
     /**
@@ -59,6 +59,16 @@ class SensorValueHandler extends SensorValue
     public function latest($id)
     {
         return $this->repository->findOneBy(array('sensorData' => $id), array('timestamp' => 'DESC'));
+    }
+
+    /**
+     * Get a list of a Sensor
+     *
+     * @return array
+     */
+    public function getASensor($id)
+    {
+        return $this->repository->findBySensorData( $id );
     }
 
     /**
