@@ -49,13 +49,20 @@ class ViewController extends Controller
         }
 
         $ob = new Highstock();
+
         $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
+        $ob->chart->zoomType('x');
+
         $ob->legend->enabled(true);
-        $ob->title->text('Chart Title');
+
+        $ob->title->text('Hőmérsékleti adatok');
+
         $ob->xAxis->title(array('text'  => "Idő"));
-        $ob->xAxis->type = 'datetime';
         $ob->xAxis->dateTimeLabelFormats = array("day" => "%Y-%b-%m %H:%i");
+        $ob->xAxis->minRange(24 * 3600 * 1000);
+
         $ob->yAxis->title(array('text'  => "Hőmérséklet"));
+
         $ob->series($series);
 
         return array(
