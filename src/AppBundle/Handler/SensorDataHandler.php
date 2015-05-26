@@ -57,7 +57,7 @@ class SensorDataHandler extends SensorData
      */
     public function all($limit = 5, $offset = 0)
     {
-        return $this->repository->findBy(array(), null, $limit, $offset);
+        return $this->repository->findBy(array(), array('type' => 'ASC'), $limit, $offset);
     }
 
     /**
