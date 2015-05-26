@@ -2,6 +2,11 @@
 
 Az akalmazás hőmérsékleti adatok vizualizálására képes, az adatokat API hívásokon keresztül tölthetünk be az adatbázisba. A fejlesztést elsősorban a leendő komposztkazánunk viselkedésének hőmérsékleti monitorozása motiválta, de bármilyen hőmérsékleti értékek megjelenítésére használható.
 
+Kiegészítő információk:
+* A vizualizáció során téli időszámítást használunk - úgyis télen lényegesek az adatok.
+* Óránként egy adatot rögzítünk, az egész órára történő kerekítést az egységesítés érdekében a szerver elvégzi
+* A várható rengeteg adatra tekintettel grafikonhoz történő adatbetöltés aszinkron lesz a későbbiekben, ill. minél távolabbról nézzük majd a grafikont, annál ritkábbak lesznek a pontok (havi nézetben napi 1-2 pont elég)
+
 A **kliens** innen tölthető le: https://github.com/sitya/compostmonitor-client.git
 
 ## Telepítés
