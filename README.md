@@ -7,7 +7,7 @@ Kiegészítő információk:
 * Óránként egy adatot rögzítünk, az egész órára történő kerekítést az egységesítés érdekében a szerver elvégzi
 * A várható rengeteg adatra tekintettel grafikonhoz történő adatbetöltés aszinkron lesz a későbbiekben, ill. minél távolabbról nézzük majd a grafikont, annál ritkábbak lesznek a pontok (havi nézetben napi 1-2 pont elég)
 
-A **kliens** innen tölthető le: https://github.com/sitya/compostmonitor-client.git
+A **kliens** innen tölthető le: https://github.com/sitya/compostmonitor-daemon.git
 
 ## Telepítés
 Feltételezve, hogy van egy megfelelő Linux alapú szerverünk, Apache, MySQL, PHP környezettel, a telepítés menete a következő.
