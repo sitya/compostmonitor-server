@@ -22,5 +22,6 @@ Előfordul, hogy az alkalmazáson fejlesztésre kerül sor, sőt mostanában kif
 1. `cd compostmonitor-server`
 2. `git pull`
 3. `composer update`
+4. `app/console cache:clear`
 
 
