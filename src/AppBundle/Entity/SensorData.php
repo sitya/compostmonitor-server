@@ -43,6 +43,13 @@ class SensorData
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="user", type="string", length=64)
+     */
+    private $user;
+
+    /**
      *
      * @ORM\OneToMany(targetEntity="SensorValue", mappedBy="id")
      */
