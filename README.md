@@ -2,7 +2,12 @@
 
 Az akalmazás hőmérsékleti adatok vizualizálására képes, az adatokat API hívásokon keresztül tölthetünk be az adatbázisba. A fejlesztést elsősorban a leendő komposztkazánunk viselkedésének hőmérsékleti monitorozása motiválta, de bármilyen hőmérsékleti értékek megjelenítésére használható.
 
-A **kliens** innen tölthető le: https://github.com/sitya/compostmonitor-client.git
+Kiegészítő információk:
+* A vizualizáció során téli időszámítást használunk - úgyis télen lényegesek az adatok.
+* Óránként egy adatot rögzítünk, az egész órára történő kerekítést az egységesítés érdekében a szerver elvégzi
+* A várható rengeteg adatra tekintettel grafikonhoz történő adatbetöltés aszinkron lesz a későbbiekben, ill. minél távolabbról nézzük majd a grafikont, annál ritkábbak lesznek a pontok (havi nézetben napi 1-2 pont elég)
+
+A **kliens** innen tölthető le: https://github.com/sitya/compostmonitor-daemon.git
 
 ## Telepítés
 Feltételezve, hogy van egy megfelelő Linux alapú szerverünk, Apache, MySQL, PHP környezettel, a telepítés menete a következő.
@@ -22,5 +27,6 @@ Előfordul, hogy az alkalmazáson fejlesztésre kerül sor, sőt mostanában kif
 1. `cd compostmonitor-server`
 2. `git pull`
 3. `composer update`
+4. `app/console cache:clear`
 
 
