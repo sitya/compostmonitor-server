@@ -25,7 +25,7 @@ class ViewController extends Controller
 {
 
    /**
-    * @Route("/", name="view")
+    * @Route("/{user}", name="view")
     * @Method("GET")
     * @Template("AppBundle:View:index.html.twig")
     */
